@@ -1,5 +1,5 @@
 EasyCAT HAT and Node-red: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/jinyistudio534/EasyCAT/blob/main/easycat_nodered/easycat_gateway_mbtcp_1.png "")
 
 Required python library
 
