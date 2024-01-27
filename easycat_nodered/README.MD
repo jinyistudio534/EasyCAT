@@ -1,4 +1,4 @@
-EasyCAT HAT and Node-red: 
+EasyCAT HAT work with Node-red
 ![alt text](https://github.com/jinyistudio534/EasyCAT/blob/main/easycat_nodered/easycat_gateway_mbtcp_1.png "")
 
 Required python library
