@@ -1,7 +1,7 @@
 EasyCAT HAT work with Node-red
 ![alt text](https://github.com/jinyistudio534/EasyCAT/blob/main/easycat_nodered/easycat_gateway_mbtcp_1.png "")
 
-
+Please execute <b>node-udp-easycat3232.py</b> first and then execute <b>sudo node-red</b>
 
 Required python library
 
