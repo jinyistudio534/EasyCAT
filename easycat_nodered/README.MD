@@ -9,15 +9,15 @@ Required python library
 
 [RPi.GPIO](https://pypi.org/project/RPi.GPIO/)
 
-[node-red-contrib-queue-gate](https://flows.nodered.org/search?term=node-red-contrib-queue-gate) ** Not necessary, can be removed by yourself
-
-[node-red-contrib-node-line-api](https://flows.nodered.org/node/node-red-contrib-node-line-api) ** Not necessary, can be removed by yourself
-
 Required Node-red library
 
 [@redplc/node-red-redplc](https://flows.nodered.org/node/@redplc/node-red-redplc)
 
 [node-red-contrib-pythonshell](https://flows.nodered.org/node/node-red-contrib-pythonshell)
+
+[node-red-contrib-queue-gate](https://flows.nodered.org/search?term=node-red-contrib-queue-gate) ** Not necessary, can be removed by yourself
+
+[node-red-contrib-node-line-api](https://flows.nodered.org/node/node-red-contrib-node-line-api) ** Not necessary, can be removed by yourself
 
 Modbus tcp/rtu Slave Simulator Installer
 
