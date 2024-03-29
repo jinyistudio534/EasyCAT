@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tank-1</title>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf8">
+    <style>	
+
+        body {
+            margin: 0;
+        }
+
+        #container {
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        #error {
+            display: none;
+        }
+
+    </style>	
+	
+	<script type = "text/javascript">
+		
+	</script>
+</head>
+<body>
+
+<div id="container"></div>
+
+<div id="error">
+    <h1>The graphic files could not be loaded</h1>
+    <p>Please note that this example may only work when served through a web server. The example code needs to dynamically load files which for security reasons is not allowed when serving from the file system.</p>
+</div>
+
+<!-- Include the runtime library -->
+<!-- NOTE: The Archer Runtime library is free for personal, non-commercial use and testing environments. -->
+<!-- For using the Archer Runtime library in production environments please visit https://archer.graphics to learn more about commercial licensing options. -->
+<script src='/libs/archer.min.js'></script>
+<script src='/libs/jquery.js'></script>
+<script src='/libs/b4j_ws.js'></script>
+
+
+
+<script language='javascript' type='text/javascript'>
+
+    /*
+    * NOTE: This example may only work when it is loaded through a web server. The example code needs to load the archer
+    * graphic file as well as the archer configuration file, which for security reasons is not allowed when loading the
+    * HTML file from the file system.
+    */
+
+    /**
+     * Root location where your interactive graphic is stored.
+     * Leave empty to resolve paths relative from this HTML.
+     * Can also contain an absolute URL to the server where your graphic is stored, for example:
+     * http://my-domain.com/graphics/my-graphic/
+     */
+    var rootUrl = '';
+
+    /**
+     * Location of the assets folder, by default resolved relative from root URL
+     */
+    var assetUrl = rootUrl + 'assets';
+
+    /**
+     * Location of the SVG file, by default resolved relative from root URL
+     */
+    var graphicUrl = rootUrl + 'archer.graphic.svg';
+
+    /**
+     * Location of the graphic configuration file, by default resolved relative from root URL
+     */
+    var configUrl = rootUrl + 'archer.config.json';
+
+    /**
+     * The container HTML element in which to display the graphic
+     */
+    var container = document.getElementById('container');
+
+    // Create a graphic instance over the container
+    var graphic = archer.create(container);
+
+    // Tell the graphic where assets (e.g. images) are located
+    graphic.document.setAssetRoot(assetUrl);
+
+    // Load graphic and configuration
+    graphic.loadUrl(graphicUrl, configUrl);
+
+    // Wait until files are loaded
+    graphic.on('ready', function () {
+
+        // Make graphic fit into container bounds
+        graphic.view.zoomToFit();
+
+        // Enable zoom / pan with mouse
+        graphic.view.enableMouse(false, false);
+
+        // Set variable values
+		graphic.setValue('id1', false);
+        graphic.setValue('id3', false);
+        graphic.setValue('id4', false);
+        graphic.setValue('id5', false);
+        graphic.setValue('id6', false);    
+       
+        // Add event listeners
+        graphic.element('id1').on('click', function(element, event) {			
+			window.location.href = "p1";					
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id1').on('mouseenter', function(element, event) {			
+			graphic.setValue('id1', true);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id1').on('mouseleave', function(element, event) {			
+			graphic.setValue('id1', false);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		
+		graphic.element('id3').on('click', function(element, event) {			
+			//b4j_raiseEvent("click",{element:"id3"});
+			window.location.href = "p3";
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id3').on('mouseenter', function(element, event) {			
+			graphic.setValue('id3', true);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id3').on('mouseleave', function(element, event) {			
+			graphic.setValue('id3', false);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		
+		graphic.element('id4').on('click', function(element, event) {			
+			b4j_raiseEvent("click",{element:"id4"});
+			window.location.href = "p4";
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id4').on('mouseenter', function(element, event) {			
+			graphic.setValue('id4', true);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id4').on('mouseleave', function(element, event) {			
+			graphic.setValue('id4', false);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		
+		graphic.element('id5').on('click', function(element, event) {			
+			//b4j_raiseEvent("click",{element:"id5"});
+			window.location.href = "p5";
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id5').on('mouseenter', function(element, event) {			
+			graphic.setValue('id5', true);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id5').on('mouseleave', function(element, event) {			
+			graphic.setValue('id5', false);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		
+		graphic.element('id6').on('click', function(element, event) {			
+			//b4j_raiseEvent("click",{element:"id6"});
+			window.location.href = "p6";
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id6').on('mouseenter', function(element, event) {			
+			graphic.setValue('id6', true);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('id6').on('mouseleave', function(element, event) {			
+			graphic.setValue('id6', false);
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		
+		
+
+    });
+	
+    // Files could not be loaded, maybe due to security restrictions
+    // Display error message
+    graphic.on('error', function() {
+        document.getElementById('error').style['display'] = 'block';
+    })
+	
+	function displayWindowSize(){
+		// Get width and height of the window excluding scrollbars
+		var w = document.documentElement.clientWidth;
+		var h = document.documentElement.clientHeight;
+    
+		// Display result inside a div element
+		console.log("Width: " + w + ", " + "Height: " + h);
+		
+		graphic.view.zoomToFit(); 
+	}
+	function b4j_wsopen() {
+	}
+	$( document ).ready(function() {	
+		b4j_connect("/ws");
+		
+		setInterval(function(){ 			
+			
+		}, 1000);
+		
+		window.addEventListener("resize", displayWindowSize);	
+		
+	});
+	
+	function updateVal(data) {
+		Object.entries(data).forEach(([key, value]) => {
+			console.log(key, value);
+			graphic.setValue(key,value);
+		});		
+		
+	}
+</script>
+
+</body>
+</html>
