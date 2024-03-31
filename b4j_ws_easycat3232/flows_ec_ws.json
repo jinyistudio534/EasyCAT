@@ -1,0 +1,322 @@
+[
+    {
+        "id": "c9fc6dfb32778bf8",
+        "type": "tab",
+        "label": "Websocket client",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ab98bbb101eb566b",
+        "type": "junction",
+        "z": "c9fc6dfb32778bf8",
+        "x": 220,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "38e22e5915139f7e",
+        "type": "junction",
+        "z": "c9fc6dfb32778bf8",
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "8c3e07640e696509"
+            ]
+        ]
+    },
+    {
+        "id": "95013bf1172998f0",
+        "type": "websocket in",
+        "z": "c9fc6dfb32778bf8",
+        "name": "",
+        "server": "",
+        "client": "0f3fd3a2e0f61c8e",
+        "x": 240,
+        "y": 360,
+        "wires": [
+            [
+                "96a24afcfab10902"
+            ]
+        ]
+    },
+    {
+        "id": "8c3e07640e696509",
+        "type": "websocket out",
+        "z": "c9fc6dfb32778bf8",
+        "name": "",
+        "server": "",
+        "client": "0f3fd3a2e0f61c8e",
+        "x": 640,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "71dbb8b3e031ce82",
+        "type": "function",
+        "z": "c9fc6dfb32778bf8",
+        "name": "Request Payload",
+        "func": "msg.payload = {};\nmsg.payload['action'] = msg.action;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 355,
+        "y": 240,
+        "wires": [
+            [
+                "8c3e07640e696509"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "bb35a197276ba7a8",
+        "type": "inject",
+        "z": "c9fc6dfb32778bf8",
+        "name": "set",
+        "props": [
+            {
+                "p": "action",
+                "v": "set",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0.5",
+        "topic": "",
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "06119ea3974d429f"
+            ]
+        ]
+    },
+    {
+        "id": "06119ea3974d429f",
+        "type": "random",
+        "z": "c9fc6dfb32778bf8",
+        "name": "",
+        "low": "0",
+        "high": "31",
+        "inte": "true",
+        "property": "item",
+        "x": 235,
+        "y": 60,
+        "wires": [
+            [
+                "fe9b7eb931f3bb82"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "9e79f58386e0b57d",
+        "type": "inject",
+        "z": "c9fc6dfb32778bf8",
+        "name": "lists",
+        "props": [
+            {
+                "p": "action",
+                "v": "list",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0.5",
+        "topic": "",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "71dbb8b3e031ce82"
+            ]
+        ]
+    },
+    {
+        "id": "bd3b21402f2234b7",
+        "type": "inject",
+        "z": "c9fc6dfb32778bf8",
+        "name": "get",
+        "props": [
+            {
+                "p": "action",
+                "v": "get",
+                "vt": "str"
+            },
+            {
+                "p": "callback",
+                "v": "123",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0.5",
+        "topic": "",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "e891b5acf549c982"
+            ]
+        ]
+    },
+    {
+        "id": "d7aecd033c4fa6f6",
+        "type": "function",
+        "z": "c9fc6dfb32778bf8",
+        "name": "Request Payload",
+        "func": "msg.payload = {};\nmsg.payload['action'] = msg.action;\nmsg.payload['tags'] = {[msg.item]:msg.value};\nnode.status({text:JSON.stringify(msg.payload['tags'])});\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 355,
+        "y": 60,
+        "wires": [
+            [
+                "8c3e07640e696509"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "fe9b7eb931f3bb82",
+        "type": "random",
+        "z": "c9fc6dfb32778bf8",
+        "name": "",
+        "low": "0",
+        "high": "255",
+        "inte": "true",
+        "property": "value",
+        "x": 295,
+        "y": 60,
+        "wires": [
+            [
+                "d7aecd033c4fa6f6"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "e891b5acf549c982",
+        "type": "random",
+        "z": "c9fc6dfb32778bf8",
+        "name": "",
+        "low": "0",
+        "high": "31",
+        "inte": "true",
+        "property": "item",
+        "x": 235,
+        "y": 120,
+        "wires": [
+            [
+                "245e214783fd0d83"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "245e214783fd0d83",
+        "type": "function",
+        "z": "c9fc6dfb32778bf8",
+        "name": "Request Payload",
+        "func": "msg.payload = {};\nmsg.payload['action'] = msg.action;\nmsg.payload['callback'] = msg.callback;\nmsg.payload['tags'] = [msg.item.toString()];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 355,
+        "y": 120,
+        "wires": [
+            [
+                "8c3e07640e696509"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "baa77899bbdb5b46",
+        "type": "inject",
+        "z": "c9fc6dfb32778bf8",
+        "name": "event",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "{\"action\":\"event\",\"callback\":\"getUpdate\",\"transform\":true,\"timing\":1000,\"tags\":[0,1,2,3,4,5,6,7]}",
+        "payloadType": "json",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "38e22e5915139f7e"
+            ]
+        ]
+    },
+    {
+        "id": "68e81b972976d1b6",
+        "type": "debug",
+        "z": "c9fc6dfb32778bf8",
+        "name": "get",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload.get",
+        "statusType": "auto",
+        "x": 630,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "96a24afcfab10902",
+        "type": "json",
+        "z": "c9fc6dfb32778bf8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "68e81b972976d1b6"
+            ]
+        ]
+    },
+    {
+        "id": "0f3fd3a2e0f61c8e",
+        "type": "websocket-client",
+        "path": "ws://192.168.1.183:8080",
+        "tls": "",
+        "wholemsg": "false",
+        "hb": "0",
+        "subprotocol": ""
+    }
+]

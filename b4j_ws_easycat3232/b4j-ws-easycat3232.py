@@ -22,7 +22,7 @@ clients = {} #: {websocket: name}
 async def ws_handler(websocket, path):
     print('New client', websocket.remote_address)
     print(' ({} existing clients)'.format(len(clients)))  
-    clients[websocket] = {'transform':False, 'timing':0, 'tags':[], 'raw':bytearray(0x0 for _ in range(32))}
+    clients[websocket] = {'transform':False,'callback':'', 'timing':0, 'tags':[], 'raw':bytearray(0x0 for _ in range(32))}
     
     async for message in websocket:  
         if message is None:
@@ -38,7 +38,9 @@ async def ws_handler(websocket, path):
             if "action" in data:                
                 if data["action"]=="get":
                     # {'action': 'get', 'tags': ['byte31']}
-                    resp = {'status':ecf,'get':{}}
+                    resp = {'etype':'runFunction','prop':''}
+                    if "callback" in data:
+                        resp['prop'] = data['callback'];
                     if "tags" in data:                         
                         tags = {}
                         for tag in data['tags']:  
@@ -51,7 +53,7 @@ async def ws_handler(websocket, path):
                             else:
                                 print('letter invalid: ',tag)
 
-                        resp['get'] = tags
+                        resp['value'] = [{'status':ecf,'tags':tags}]
 
                     resps = json.dumps(resp)
                     await websocket.send(resps)
@@ -71,21 +73,28 @@ async def ws_handler(websocket, path):
                        
                 elif data["action"]=="list":                
                     # 在這裡進行你的處理邏輯，這裡只是簡單地回傳相同的訊息
-                    resp = {"slave": "EasyCAT HAT 32*32"}           
+                    resp = {"slave": "EasyCAT HAT 32*32"}  
+                    if "callback" in data:
+                        resp['callback'] = data['callback'];         
                     # 將回應編碼為JSON並發送回客戶端
                     resps = json.dumps(resp)
                     await websocket.send(resps)
 
                 elif data["action"]=="event":
+                   
                     # {'transform': False, 'timing': 500, 'tags': [0, 1, 2, 3, 4, 5, 6, 7]}
                     Event = clients[websocket]
                     Event['transform'] = False
                     Event['timing'] = 0
                     Event['tags'] = []
+                    Event['callback'] = ''
                     Event['raw'] = bytearray(0x0 for _ in range(32))
 
                     if "transform" in data:
-                        Event['transform'] = data['transform']                 
+                        Event['transform'] = data['transform']  
+
+                    if "callback" in data:
+                        Event['callback'] = data['callback'];                             
 
                     if "timing" in data:
                         Event['timing'] = data['timing']
@@ -123,33 +132,40 @@ async def data_loop():
             try:                
                 for client,_ in clients.items():                    
                     event = clients[client]                
-                    if len(event)>0:
+                    if len(event)>0:                        
                         Transform = event['transform']
-                        Timing = event['timing']                        
-                        Timeup = False
-                        if Timing>0:
-                            Last = event['lasttime']
-                            Elap = (time.perf_counter()-Last)*1000 #ms
-                            if Elap >= Timing:
-                                event['lasttime'] = time.perf_counter()
-                                print('timeup: ',Elap)                            
-                                Timeup = True
+                        Timing = event['timing']   
+                        if Timing>0 or Transform:                     
+                            #print(event)
+                            Timeup = False
+                            if Timing>0:
+                                Last = event['lasttime']
+                                Elap = (time.perf_counter()-Last)*1000 #ms
+                                if Elap >= Timing:
+                                    event['lasttime'] = time.perf_counter()
+                                    print('timeup: ',Elap)                            
+                                    Timeup = True
 
-                        Tags = event['tags']                        
-                        Resp = {'status':ecf,'event':{}}
-                        for k in Tags:
-                            k1 = int(k)
-                            if Timeup:
-                                 Resp['event'][k] = easycat.BufferOut[k1]
-                            if Transform:
-                                if event['raw'][k1] != easycat.BufferOut[k1]:
-                                    Resp['event'][k1] = easycat.BufferOut[k1]
+                            Tags = event['tags']                        
+                            Resp = {'status':ecf,'tags':{}}
+                            Trans = 0
+                            for k in Tags:
+                                k1 = int(k)
+                                if Timeup:
+                                     Resp['tags'][k] = easycat.BufferOut[k1]
 
-                            event['raw'][k1] = easycat.BufferOut[k1]
+                                if Transform:
+                                    if event['raw'][k1] != easycat.BufferOut[k1]:
+                                        Resp['tags'][k1] = easycat.BufferOut[k1]
+                                        Trans = Trans + 1
 
-                        if len(Resp['event'])>0:
-                            Resps = json.dumps(Resp)
-                            await client.send(Resps)
+                                event['raw'][k1] = easycat.BufferOut[k1]
+
+                            # ed.type='runFunction' ed.prop='function?', ed.value=[?]
+                            if Timeup or Trans>0:
+                                Resps = json.dumps({'etype':'runFunction','prop':event['callback'],'value':[Resp]})
+                                print(Resps)
+                                await client.send(Resps)
 
 
             except Exception as err:
