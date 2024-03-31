@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tank-1</title>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf8">
+    <style>	
+
+        body {
+            margin: 0;
+        }
+
+        #container {
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+        }
+		
+		.yellow {
+			background-color: yellow;
+		}
+
+        #error {
+            display: none;
+        }
+
+    </style>	
+	
+	<script type = "text/javascript">
+		
+	</script>
+</head>
+<body>
+
+<div id="numpad4div" style="display:none">0</div>
+
+<div id="container"></div>
+
+<div id="error">
+    <h1>The graphic files could not be loaded</h1>
+    <p>Please note that this example may only work when served through a web server. The example code needs to dynamically load files which for security reasons is not allowed when serving from the file system.</p>
+</div>
+
+<!-- Include the runtime library -->
+<!-- NOTE: The Archer Runtime library is free for personal, non-commercial use and testing environments. -->
+<!-- For using the Archer Runtime library in production environments please visit https://archer.graphics to learn more about commercial licensing options. -->
+<link rel="stylesheet" href="/libs/jquery.numpad.css">		
+<script src='/libs/jquery.js'></script>
+<script src="/libs/jquery.numpad.js"></script>
+<script src='/libs/archer.min.js'></script>
+<script src='/libs/b4j_ws.js'></script>
+
+
+
+<script language='javascript' type='text/javascript'>
+
+    /*
+    * NOTE: This example may only work when it is loaded through a web server. The example code needs to load the archer
+    * graphic file as well as the archer configuration file, which for security reasons is not allowed when loading the
+    * HTML file from the file system.
+    */
+	var Numpad = {k:'',v:'0'};
+	
+	function ShowNumpad(tagName){
+		Numpad['k'] = tagName;
+		Numpad['v'] = graphic.getValue(tagName);
+		$('#numpad4div').trigger('click');
+	}
+    /**
+     * Root location where your interactive graphic is stored.
+     * Leave empty to resolve paths relative from this HTML.
+     * Can also contain an absolute URL to the server where your graphic is stored, for example:
+     * http://my-domain.com/graphics/my-graphic/
+     */
+    var rootUrl = '';
+
+    /**
+     * Location of the assets folder, by default resolved relative from root URL
+     */
+    var assetUrl = rootUrl + 'assets';
+
+    /**
+     * Location of the SVG file, by default resolved relative from root URL
+     */
+    var graphicUrl = rootUrl + 'archer.graphic1.svg';
+
+    /**
+     * Location of the graphic configuration file, by default resolved relative from root URL
+     */
+    var configUrl = rootUrl + 'archer.config1.json';
+
+    /**
+     * The container HTML element in which to display the graphic
+     */
+    var container = document.getElementById('container');
+
+    // Create a graphic instance over the container
+    var graphic = archer.create(container);
+
+    // Tell the graphic where assets (e.g. images) are located
+    graphic.document.setAssetRoot(assetUrl);
+
+    // Load graphic and configuration
+    graphic.loadUrl(graphicUrl, configUrl);
+
+    // Wait until files are loaded
+    graphic.on('ready', function () {
+
+        // Make graphic fit into container bounds
+        graphic.view.zoomToFit();
+
+        // Enable zoom / pan with mouse
+        graphic.view.enableMouse(false, false);
+
+        // Set variable values
+		for (var i = 0; i <8; i++) {
+			graphic.setValue('it'+i,'0');
+			graphic.setValue('ot'+i,'0');
+		}
+        // Add event listeners
+		graphic.element('og0').on('click', function(element, event) {	
+			ShowNumpad('ot0');		
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('og1').on('click', function(element, event) {						
+			ShowNumpad('ot1');
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('og2').on('click', function(element, event) {						
+			ShowNumpad('ot2');
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('og3').on('click', function(element, event) {						
+			ShowNumpad('ot3');
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('og4').on('click', function(element, event) {						
+			ShowNumpad('ot4');
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('og5').on('click', function(element, event) {						
+			ShowNumpad('ot5');
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('og6').on('click', function(element, event) {						
+			ShowNumpad('ot6');
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		graphic.element('og7').on('click', function(element, event) {						
+			ShowNumpad('ot7');
+            console.log('event: ' + event.type + ', element: ' + element.id);									
+        });
+		
+
+    });
+	
+    // Files could not be loaded, maybe due to security restrictions
+    // Display error message
+    graphic.on('error', function() {
+        document.getElementById('error').style['display'] = 'block';
+    })
+	
+	function displayWindowSize(){
+		// Get width and height of the window excluding scrollbars
+		var w = document.documentElement.clientWidth;
+		var h = document.documentElement.clientHeight;
+    
+		// Display result inside a div element
+		console.log("Width: " + w + ", " + "Height: " + h);
+		
+		graphic.view.zoomToFit(); 
+	}
+	function updateVal(data) {
+		Object.entries(data).forEach(([key, value]) => {
+			console.log(key, value);
+			if (key == 'tags') {
+				var tags = value;
+				Object.entries(tags).forEach(([k1, v1]) => {
+					graphic.setValue('it'+k1, v1);
+					console.log(k1, v1);
+				});
+			}
+			//graphic.setValue(key,value);
+		});		
+		
+	}
+	function b4j_wsopen() {
+		var queryString = window.location.search ;
+		//queryString = (queryString !== "") ? "/" + queryString : "";
+		console.log("queryString: " + queryString);
+		
+		var evt = {"action": "event","transform": false,"callback":"updateVal","timing": 500,"tags": [0,1,2,3,4,5,6,7]};
+		b4j_sendData1(evt);
+	}
+	function setTag(k,v) {
+		var evt = {"action": "set","tags": {[k]:parseInt(v)}};
+		b4j_sendData1(evt);
+	}
+	
+	$( document ).ready(function() {
+		$('#numpad4div').trigger('click');
+		
+		$('#numpad4div').numpad({
+			backgroundTpl:'<div class="yellow"></div>',
+			onKeypadOpen:function(){
+				$(this).find('.nmpd-display').val(Numpad['v']);
+				console.log("onKeypadOpen: " + $(this).find('.nmpd-display').val());
+			},
+			onKeypadClose:function(){				
+				Numpad['v'] = $(this).find('.nmpd-display').val(); 
+				graphic.setValue(Numpad['k'],Numpad['v']);
+				console.log("onKeypadClose: " + Numpad['v']);
+				
+				setTag(Numpad['k'].replace('ot',''), Numpad['v']);
+				
+			}
+		});
+		
+		b4j_connect1("8080","/ws");
+		
+		setInterval(function(){ 			
+			
+		}, 1000);
+		
+		window.addEventListener("resize", displayWindowSize);	
+		
+	});
+	
+	
+</script>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+{
+  "variables": [
+    {
+      "name": "it0",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "it1",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "it2",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "it3",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "it4",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "it5",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "it6",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "it7",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "ot0",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "ot1",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "ot2",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "ot3",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "ot4",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "ot5",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "ot6",
+      "type": "text",
+      "keyFrames": {}
+    },
+    {
+      "name": "ot7",
+      "type": "text",
+      "keyFrames": {}
+    }
+  ],
+  "transformations": [
+    {
+      "name": "text_in0",
+      "type": "text",
+      "element": "in0",
+      "variable": "it0",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-68",
+      "type": "text",
+      "element": "in0-68",
+      "variable": "it1",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-68-6",
+      "type": "text",
+      "element": "in0-68-6",
+      "variable": "it2",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-68-6-5",
+      "type": "text",
+      "element": "in0-68-6-5",
+      "variable": "it3",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-68-6-5-3",
+      "type": "text",
+      "element": "in0-68-6-5-3",
+      "variable": "it4",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-68-6-5-3-8",
+      "type": "text",
+      "element": "in0-68-6-5-3-8",
+      "variable": "it5",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-68-6-5-3-8-4",
+      "type": "text",
+      "element": "in0-68-6-5-3-8-4",
+      "variable": "it6",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-68-6-5-3-8-4-0",
+      "type": "text",
+      "element": "in0-68-6-5-3-8-4-0",
+      "variable": "it7",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-6",
+      "type": "text",
+      "element": "in0-6",
+      "variable": "ot0",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-6-1",
+      "type": "text",
+      "element": "in0-6-1",
+      "variable": "ot1",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-6-1-4",
+      "type": "text",
+      "element": "in0-6-1-4",
+      "variable": "ot2",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-6-1-4-0",
+      "type": "text",
+      "element": "in0-6-1-4-0",
+      "variable": "ot3",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-6-1-4-0-5",
+      "type": "text",
+      "element": "in0-6-1-4-0-5",
+      "variable": "ot4",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-6-1-4-0-5-7",
+      "type": "text",
+      "element": "in0-6-1-4-0-5-7",
+      "variable": "ot5",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-6-1-4-0-5-7-2",
+      "type": "text",
+      "element": "in0-6-1-4-0-5-7-2",
+      "variable": "ot6",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    },
+    {
+      "name": "text_in0-6-1-4-0-5-7-2-4",
+      "type": "text",
+      "element": "in0-6-1-4-0-5-7-2-4",
+      "variable": "ot7",
+      "frames": {
+        "$default": {
+          "name": "$default",
+          "value": "0",
+          "transition": "step"
+        }
+      },
+      "transition": null,
+      "priority": 0,
+      "bind": "value"
+    }
+  ],
+  "elements": [
+    {
+      "id": "og0",
+      "events": [
+        "click"
+      ]
+    },
+    {
+      "id": "og1",
+      "events": [
+        "click"
+      ]
+    },
+    {
+      "id": "og2",
+      "events": [
+        "click"
+      ]
+    },
+    {
+      "id": "og3",
+      "events": [
+        "click"
+      ]
+    },
+    {
+      "id": "og4",
+      "events": [
+        "click"
+      ]
+    },
+    {
+      "id": "og5",
+      "events": [
+        "click"
+      ]
+    },
+    {
+      "id": "og6",
+      "events": [
+        "click"
+      ]
+    },
+    {
+      "id": "og7",
+      "events": [
+        "click"
+      ]
+    }
+  ]
+}
