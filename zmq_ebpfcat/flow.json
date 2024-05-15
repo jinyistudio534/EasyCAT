@@ -1,0 +1,3000 @@
+[
+    {
+        "id": "be232a59444cd980",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ba88500a6644f9ad",
+        "type": "tab",
+        "label": "plc",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0213d34cc097629b",
+        "type": "tab",
+        "label": "dashboard 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "07fcf23cef84d467",
+        "type": "junction",
+        "z": "ba88500a6644f9ad",
+        "x": 1020,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "08a83f897f6a2295",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094ce",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "710d5ebd27b9e746",
+        "type": "ui-page",
+        "name": "Inputs/Outputs",
+        "ui": "874cef5a3c535655",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "08a83f897f6a2295",
+        "order": -1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "874cef5a3c535655",
+        "type": "ui-base",
+        "name": "UI123",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "navigationStyle": "default"
+    },
+    {
+        "id": "f16a9c604874eba3",
+        "type": "ui-group",
+        "name": "EL2088(3)",
+        "page": "710d5ebd27b9e746",
+        "width": "6",
+        "height": "1",
+        "order": -1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "cf51d8197c6e302d",
+        "type": "ui-group",
+        "name": "EL2088(4)",
+        "page": "710d5ebd27b9e746",
+        "width": "6",
+        "height": "1",
+        "order": -1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "6d54c41f61626e7a",
+        "type": "zeromq in",
+        "z": "be232a59444cd980",
+        "name": "",
+        "topic": "S1",
+        "fields": "topic,payload",
+        "server": "tcp://192.168.1.181:5550",
+        "output": "json",
+        "isserver": false,
+        "intype": "sub",
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "48b862267fdf0ac7",
+                "eb3227c954debb95"
+            ]
+        ]
+    },
+    {
+        "id": "b513160d09cdefb9",
+        "type": "zeromq out",
+        "z": "be232a59444cd980",
+        "name": "",
+        "topic": "",
+        "fields": "topic,payload",
+        "server": "tcp://192.168.1.181:5551",
+        "isserver": false,
+        "intype": "pub",
+        "x": 1020,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "48b862267fdf0ac7",
+        "type": "debug",
+        "z": "be232a59444cd980",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 255,
+        "y": 180,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "583cfb6f9da8f113",
+        "type": "inject",
+        "z": "be232a59444cd980",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "S.3.1",
+        "x": 210,
+        "y": 1100,
+        "wires": [
+            [
+                "3f6c3dbbd2e9c0b7"
+            ]
+        ]
+    },
+    {
+        "id": "c3042f07578b3697",
+        "type": "inject",
+        "z": "be232a59444cd980",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "S.4.3",
+        "x": 210,
+        "y": 1160,
+        "wires": [
+            [
+                "3f6c3dbbd2e9c0b7"
+            ]
+        ]
+    },
+    {
+        "id": "3f6c3dbbd2e9c0b7",
+        "type": "random",
+        "z": "be232a59444cd980",
+        "name": "",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "payload",
+        "x": 400,
+        "y": 1120,
+        "wires": [
+            [
+                "b513160d09cdefb9"
+            ]
+        ]
+    },
+    {
+        "id": "4e14f123cc94cf3c",
+        "type": "context-monitor",
+        "z": "be232a59444cd980",
+        "name": "",
+        "monitoring": [
+            {
+                "scope": "global",
+                "key": "S3"
+            },
+            {
+                "scope": "global",
+                "key": "S4"
+            }
+        ],
+        "tostatus": true,
+        "x": 200,
+        "y": 1300,
+        "wires": [
+            [
+                "09f5d7eb43b0045b"
+            ],
+            [
+                "3d2c2b665ac44700",
+                "aa95bd1f13ade9bc"
+            ]
+        ]
+    },
+    {
+        "id": "09f5d7eb43b0045b",
+        "type": "debug",
+        "z": "be232a59444cd980",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "payload",
+        "statusType": "auto",
+        "x": 400,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "3d2c2b665ac44700",
+        "type": "debug",
+        "z": "be232a59444cd980",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "359c0d1f9e9a27b5",
+        "type": "config",
+        "z": "be232a59444cd980",
+        "name": "",
+        "properties": [
+            {
+                "p": "S3",
+                "pt": "global",
+                "to": "{\"0\":false,\"1\":false,\"2\":false,\"3\":false,\"4\":false,\"5\":false,\"6\":false,\"7\":false}",
+                "tot": "json"
+            },
+            {
+                "p": "S4",
+                "pt": "global",
+                "to": "{\"0\":false,\"1\":false,\"2\":false,\"3\":false,\"4\":false,\"5\":false,\"6\":false,\"7\":false}",
+                "tot": "json"
+            }
+        ],
+        "active": true,
+        "x": 230,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "f2b3b77243cfc1ec",
+        "type": "inject",
+        "z": "be232a59444cd980",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "S3",
+        "x": 230,
+        "y": 1720,
+        "wires": [
+            [
+                "f4f8b09c1e26f4ca"
+            ]
+        ]
+    },
+    {
+        "id": "15963d860ee1218c",
+        "type": "function",
+        "z": "be232a59444cd980",
+        "name": "function 1",
+        "func": "var v1 = global.get(msg.topic); \nv1[msg.channel.toString()] = Boolean(msg.value);\nglobal.set(msg.topic+'[' + msg.channel.toString() + ']', Boolean(msg.value));\nnode.status({fill:\"red\",shape:\"ring\",\"text\":JSON.stringify(v1)});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 1720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ef68c6fa0c2893f6",
+        "type": "random",
+        "z": "be232a59444cd980",
+        "name": "",
+        "low": "0",
+        "high": "1",
+        "inte": "true",
+        "property": "value",
+        "x": 560,
+        "y": 1720,
+        "wires": [
+            [
+                "15963d860ee1218c"
+            ]
+        ]
+    },
+    {
+        "id": "f4f8b09c1e26f4ca",
+        "type": "random",
+        "z": "be232a59444cd980",
+        "name": "",
+        "low": "0",
+        "high": "7",
+        "inte": "true",
+        "property": "channel",
+        "x": 400,
+        "y": 1720,
+        "wires": [
+            [
+                "ef68c6fa0c2893f6"
+            ]
+        ]
+    },
+    {
+        "id": "963392f2908be4ed",
+        "type": "inject",
+        "z": "be232a59444cd980",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "S4",
+        "x": 230,
+        "y": 1760,
+        "wires": [
+            [
+                "f4f8b09c1e26f4ca"
+            ]
+        ]
+    },
+    {
+        "id": "9728f9cd6729ce81",
+        "type": "function",
+        "z": "be232a59444cd980",
+        "name": "S3",
+        "func": "\nreturn { 'topic': 'S3', payload: global.get('S3')}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 1300,
+        "wires": [
+            [
+                "31137669fe69898a"
+            ]
+        ]
+    },
+    {
+        "id": "31137669fe69898a",
+        "type": "link out",
+        "z": "be232a59444cd980",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "1ecab85c8c3322c8"
+        ],
+        "x": 705,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "1ecab85c8c3322c8",
+        "type": "link in",
+        "z": "be232a59444cd980",
+        "name": "link in 1",
+        "links": [
+            "31137669fe69898a"
+        ],
+        "x": 865,
+        "y": 1160,
+        "wires": [
+            [
+                "b513160d09cdefb9"
+            ]
+        ]
+    },
+    {
+        "id": "aa95bd1f13ade9bc",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "S3",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "S4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 390,
+        "y": 1320,
+        "wires": [
+            [
+                "9728f9cd6729ce81"
+            ],
+            [
+                "b82348512762b2fe"
+            ]
+        ]
+    },
+    {
+        "id": "b82348512762b2fe",
+        "type": "function",
+        "z": "be232a59444cd980",
+        "name": "S4",
+        "func": "\nreturn { 'topic': 'S4', payload: global.get('S4')}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 1340,
+        "wires": [
+            [
+                "31137669fe69898a"
+            ]
+        ]
+    },
+    {
+        "id": "6d17f922c8472f03",
+        "type": "change",
+        "z": "be232a59444cd980",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "S3.1",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 1840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ebad88139804a42",
+        "type": "inject",
+        "z": "be232a59444cd980",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 470,
+        "y": 1820,
+        "wires": [
+            [
+                "6d17f922c8472f03"
+            ]
+        ]
+    },
+    {
+        "id": "81382fd1dc5020dc",
+        "type": "inject",
+        "z": "be232a59444cd980",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 470,
+        "y": 1860,
+        "wires": [
+            [
+                "6d17f922c8472f03"
+            ]
+        ]
+    },
+    {
+        "id": "eb3227c954debb95",
+        "type": "split",
+        "z": "be232a59444cd980",
+        "name": "Split map",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": "1",
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 300,
+        "y": 260,
+        "wires": [
+            [
+                "8c82877cdaff8f0d",
+                "9c6f8c42d0e617d5",
+                "af931f34afe4138f",
+                "9a3bee2921456d3d",
+                "13e6d7063c8271e5",
+                "f9b7bba5a4d98e1e",
+                "482dcb9a8ba120c5",
+                "d1de0f95a0d6e410",
+                "c24ed4261c97259e"
+            ]
+        ]
+    },
+    {
+        "id": "8c82877cdaff8f0d",
+        "type": "debug",
+        "z": "be232a59444cd980",
+        "name": "Print property values",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "9c6f8c42d0e617d5",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S1.0",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "e2e1d32f49919afd"
+            ]
+        ]
+    },
+    {
+        "id": "e2e1d32f49919afd",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "1",
+        "index": "0",
+        "tofix": 2,
+        "name": "",
+        "x": 650,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "af931f34afe4138f",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S1.1",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 320,
+        "wires": [
+            [
+                "41a2b49e093054e5"
+            ]
+        ]
+    },
+    {
+        "id": "41a2b49e093054e5",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "1",
+        "index": "1",
+        "tofix": 2,
+        "name": "",
+        "x": 650,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "759e0caa9537791d",
+        "type": "redplc-m-memory",
+        "z": "be232a59444cd980",
+        "address": "1",
+        "persistent": 0,
+        "tupdate": 20,
+        "meminit": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "x": 115,
+        "y": 160,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "9a3bee2921456d3d",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S1.2",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "955489b0e9f69d4b"
+            ]
+        ]
+    },
+    {
+        "id": "955489b0e9f69d4b",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "1",
+        "index": "2",
+        "tofix": 2,
+        "name": "",
+        "x": 650,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "13e6d7063c8271e5",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S1.3",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 440,
+        "wires": [
+            [
+                "bcd10c30d4b1ddbc"
+            ]
+        ]
+    },
+    {
+        "id": "bcd10c30d4b1ddbc",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "1",
+        "index": "3",
+        "tofix": 2,
+        "name": "",
+        "x": 650,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f9b7bba5a4d98e1e",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S1.4",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 500,
+        "wires": [
+            [
+                "d9d8c9f767328693"
+            ]
+        ]
+    },
+    {
+        "id": "d9d8c9f767328693",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "1",
+        "index": "4",
+        "tofix": 2,
+        "name": "",
+        "x": 650,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "482dcb9a8ba120c5",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S1.5",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 560,
+        "wires": [
+            [
+                "b48beefd98483e93"
+            ]
+        ]
+    },
+    {
+        "id": "b48beefd98483e93",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "1",
+        "index": "5",
+        "tofix": 2,
+        "name": "",
+        "x": 650,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "d1de0f95a0d6e410",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S1.6",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 620,
+        "wires": [
+            [
+                "39f3bf4261942edb"
+            ]
+        ]
+    },
+    {
+        "id": "39f3bf4261942edb",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "1",
+        "index": "6",
+        "tofix": 2,
+        "name": "",
+        "x": 650,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "c24ed4261c97259e",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S1.7",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 680,
+        "wires": [
+            [
+                "3aeb50c439035626"
+            ]
+        ]
+    },
+    {
+        "id": "3aeb50c439035626",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "1",
+        "index": "7",
+        "tofix": 2,
+        "name": "",
+        "x": 650,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "21f643c29062cb50",
+        "type": "zeromq in",
+        "z": "be232a59444cd980",
+        "name": "",
+        "topic": "S2",
+        "fields": "topic,payload",
+        "server": "tcp://192.168.1.181:5550",
+        "output": "json",
+        "isserver": false,
+        "intype": "sub",
+        "x": 830,
+        "y": 220,
+        "wires": [
+            [
+                "ba8844e77cb4f92a",
+                "60d63d454c166a97"
+            ]
+        ]
+    },
+    {
+        "id": "ba8844e77cb4f92a",
+        "type": "debug",
+        "z": "be232a59444cd980",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 935,
+        "y": 180,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "60d63d454c166a97",
+        "type": "split",
+        "z": "be232a59444cd980",
+        "name": "Split map",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": "1",
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 980,
+        "y": 260,
+        "wires": [
+            [
+                "a409d164dbe9a9d7",
+                "7a8ae94a88b8df7e",
+                "a850f819603221e9",
+                "df43d1fa42a00892",
+                "776ed66049ee4362",
+                "616110a57cbcaa17",
+                "bb5139e2311bfe34",
+                "818a43fa0f2f5e5d",
+                "76e5237c0d57ac01"
+            ]
+        ]
+    },
+    {
+        "id": "a409d164dbe9a9d7",
+        "type": "debug",
+        "z": "be232a59444cd980",
+        "name": "Print property values",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "7a8ae94a88b8df7e",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S2.0",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 260,
+        "wires": [
+            [
+                "ba2d309f1f3aa176"
+            ]
+        ]
+    },
+    {
+        "id": "ba2d309f1f3aa176",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "2",
+        "index": "0",
+        "tofix": 2,
+        "name": "",
+        "x": 1330,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "a850f819603221e9",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S2.1",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 320,
+        "wires": [
+            [
+                "ad4b198227f38950"
+            ]
+        ]
+    },
+    {
+        "id": "ad4b198227f38950",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "2",
+        "index": "1",
+        "tofix": 2,
+        "name": "",
+        "x": 1330,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "dd179089ad6db80e",
+        "type": "redplc-m-memory",
+        "z": "be232a59444cd980",
+        "address": "2",
+        "persistent": 0,
+        "tupdate": 20,
+        "meminit": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "x": 795,
+        "y": 160,
+        "wires": [],
+        "l": false
+    },
+    {
+        "id": "df43d1fa42a00892",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S2.2",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 380,
+        "wires": [
+            [
+                "9763ed8b7468768f"
+            ]
+        ]
+    },
+    {
+        "id": "9763ed8b7468768f",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "2",
+        "index": "2",
+        "tofix": 2,
+        "name": "",
+        "x": 1330,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "776ed66049ee4362",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S2.3",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 440,
+        "wires": [
+            [
+                "2ec9f3b23a909cd5"
+            ]
+        ]
+    },
+    {
+        "id": "2ec9f3b23a909cd5",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "2",
+        "index": "3",
+        "tofix": 2,
+        "name": "",
+        "x": 1330,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "616110a57cbcaa17",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S2.4",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 500,
+        "wires": [
+            [
+                "19b6d51f945488b5"
+            ]
+        ]
+    },
+    {
+        "id": "19b6d51f945488b5",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "2",
+        "index": "4",
+        "tofix": 2,
+        "name": "",
+        "x": 1330,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "bb5139e2311bfe34",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S2.5",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 560,
+        "wires": [
+            [
+                "3d275d877e4181a0"
+            ]
+        ]
+    },
+    {
+        "id": "3d275d877e4181a0",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "2",
+        "index": "5",
+        "tofix": 2,
+        "name": "",
+        "x": 1330,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "818a43fa0f2f5e5d",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S2.6",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "6",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 620,
+        "wires": [
+            [
+                "d142305922cf16ac"
+            ]
+        ]
+    },
+    {
+        "id": "d142305922cf16ac",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "2",
+        "index": "6",
+        "tofix": 2,
+        "name": "",
+        "x": 1330,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "76e5237c0d57ac01",
+        "type": "switch",
+        "z": "be232a59444cd980",
+        "name": "S2.7",
+        "property": "parts.key",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "7",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1170,
+        "y": 680,
+        "wires": [
+            [
+                "5cf2b07a9dcc8cbd"
+            ]
+        ]
+    },
+    {
+        "id": "5cf2b07a9dcc8cbd",
+        "type": "redplc-import",
+        "z": "be232a59444cd980",
+        "vartype": "M",
+        "address": "2",
+        "index": "7",
+        "tofix": 2,
+        "name": "",
+        "x": 1330,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "d1de107625ec3888",
+        "type": "redplc-sys-onstart",
+        "z": "ba88500a6644f9ad",
+        "sdelay": 100,
+        "x": 70,
+        "y": 220,
+        "wires": [
+            [
+                "e791a86bb641e94c"
+            ]
+        ]
+    },
+    {
+        "id": "e791a86bb641e94c",
+        "type": "redplc-sys-inject",
+        "z": "ba88500a6644f9ad",
+        "sdelay": 200,
+        "tupdate": 10,
+        "outputs": 8,
+        "x": 220,
+        "y": 220,
+        "wires": [
+            [
+                "b7aa3e7461b62eda"
+            ],
+            [
+                "4da4b446260467e7"
+            ],
+            [
+                "b452f4a03caac2a9"
+            ],
+            [],
+            [],
+            [],
+            [
+                "1dca1a23cc82188e"
+            ],
+            [
+                "7999d1a7fda7bb5f"
+            ]
+        ]
+    },
+    {
+        "id": "b7aa3e7461b62eda",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "1",
+        "outputs": 1,
+        "name": "",
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "b373d975c7446a77"
+            ]
+        ]
+    },
+    {
+        "id": "b373d975c7446a77",
+        "type": "redplc-contact",
+        "z": "ba88500a6644f9ad",
+        "operation": "NO",
+        "vartype": "M",
+        "address": "1",
+        "index": 0,
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "name": "",
+        "x": 580,
+        "y": 80,
+        "wires": [
+            [
+                "6f7dbd3a548ad799"
+            ]
+        ]
+    },
+    {
+        "id": "6f7dbd3a548ad799",
+        "type": "redplc-counter",
+        "z": "ba88500a6644f9ad",
+        "operation": "CTU",
+        "address": 0,
+        "preset": 10,
+        "persistent": 0,
+        "tpers": 20,
+        "name": "",
+        "outputs": 1,
+        "x": 740,
+        "y": 80,
+        "wires": [
+            [
+                "e0583501bb88854b"
+            ]
+        ]
+    },
+    {
+        "id": "e0583501bb88854b",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "0",
+        "outputs": 0,
+        "name": "",
+        "x": 1070,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2b49804365c14ff1",
+        "type": "redplc-coil",
+        "z": "ba88500a6644f9ad",
+        "operation": "ST",
+        "vartype": "C",
+        "address": 0,
+        "index": 0,
+        "counter": "R",
+        "timer": "R",
+        "fflop": "R",
+        "name": "",
+        "x": 730,
+        "y": 180,
+        "wires": [
+            [
+                "9b231d8dfc4c61e6"
+            ]
+        ]
+    },
+    {
+        "id": "4da4b446260467e7",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "1",
+        "outputs": 1,
+        "name": "",
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "afe19f34f0be9147"
+            ]
+        ]
+    },
+    {
+        "id": "afe19f34f0be9147",
+        "type": "redplc-contact",
+        "z": "ba88500a6644f9ad",
+        "operation": "NO",
+        "vartype": "C",
+        "address": "0",
+        "index": 0,
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "name": "",
+        "x": 580,
+        "y": 180,
+        "wires": [
+            [
+                "2b49804365c14ff1"
+            ]
+        ]
+    },
+    {
+        "id": "9b231d8dfc4c61e6",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "0",
+        "outputs": 0,
+        "name": "",
+        "x": 1070,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b452f4a03caac2a9",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "1",
+        "outputs": 1,
+        "name": "",
+        "x": 430,
+        "y": 260,
+        "wires": [
+            [
+                "42db3eef7ec6d727",
+                "f58cf1f8636a2c5e",
+                "9c85761e98ce62f4"
+            ]
+        ]
+    },
+    {
+        "id": "f7547d62ff08fb7c",
+        "type": "redplc-timer",
+        "z": "ba88500a6644f9ad",
+        "operation": "TON",
+        "address": 0,
+        "timev": "250",
+        "timeu": "ms",
+        "persistent": 0,
+        "tpers": 20,
+        "name": "",
+        "x": 770,
+        "y": 260,
+        "wires": [
+            [
+                "0ddb631122135f64"
+            ]
+        ]
+    },
+    {
+        "id": "0ddb631122135f64",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "0",
+        "outputs": 0,
+        "name": "",
+        "x": 1070,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "42db3eef7ec6d727",
+        "type": "redplc-contact",
+        "z": "ba88500a6644f9ad",
+        "operation": "NO",
+        "vartype": "T",
+        "address": 0,
+        "index": 0,
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "name": "",
+        "x": 600,
+        "y": 340,
+        "wires": [
+            [
+                "6e917303f186f953"
+            ]
+        ]
+    },
+    {
+        "id": "6e917303f186f953",
+        "type": "redplc-timer",
+        "z": "ba88500a6644f9ad",
+        "operation": "TON",
+        "address": "1",
+        "timev": "100",
+        "timeu": "ms",
+        "persistent": 0,
+        "tpers": 20,
+        "name": "",
+        "x": 770,
+        "y": 340,
+        "wires": [
+            [
+                "01aee8f04b345f68"
+            ]
+        ]
+    },
+    {
+        "id": "01aee8f04b345f68",
+        "type": "redplc-coil",
+        "z": "ba88500a6644f9ad",
+        "operation": "ST",
+        "vartype": "T",
+        "address": 0,
+        "index": 0,
+        "counter": "R",
+        "timer": "R",
+        "fflop": "R",
+        "name": "",
+        "x": 895,
+        "y": 340,
+        "wires": [
+            [
+                "0ddb631122135f64"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "f58cf1f8636a2c5e",
+        "type": "redplc-contact",
+        "z": "ba88500a6644f9ad",
+        "operation": "NC",
+        "vartype": "T",
+        "address": "1",
+        "index": 0,
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "name": "",
+        "x": 600,
+        "y": 260,
+        "wires": [
+            [
+                "f7547d62ff08fb7c"
+            ]
+        ]
+    },
+    {
+        "id": "69366e96f463df87",
+        "type": "redplc-m-memory",
+        "z": "ba88500a6644f9ad",
+        "address": "3",
+        "persistent": 0,
+        "tupdate": 20,
+        "meminit": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "x": 180,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "e7e6b7a553718a29",
+        "type": "redplc-m-memory",
+        "z": "ba88500a6644f9ad",
+        "address": "4",
+        "persistent": 0,
+        "tupdate": 20,
+        "meminit": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ],
+        "x": 180,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9c85761e98ce62f4",
+        "type": "redplc-contact",
+        "z": "ba88500a6644f9ad",
+        "operation": "NO",
+        "vartype": "T",
+        "address": 0,
+        "index": 0,
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "name": "",
+        "x": 600,
+        "y": 420,
+        "wires": [
+            [
+                "f6d27564d125a69c",
+                "5a48622dcaff51ae",
+                "ee3889da73845d3c",
+                "0c05568d64c09677"
+            ]
+        ]
+    },
+    {
+        "id": "f6d27564d125a69c",
+        "type": "redplc-coil",
+        "z": "ba88500a6644f9ad",
+        "operation": "ST",
+        "vartype": "M",
+        "address": "3",
+        "index": 0,
+        "counter": "R",
+        "timer": "R",
+        "fflop": "R",
+        "name": "",
+        "x": 790,
+        "y": 420,
+        "wires": [
+            [
+                "ebd56637fced523f"
+            ]
+        ]
+    },
+    {
+        "id": "46c3788cf9d12aed",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "4",
+        "index": 0,
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S4",
+        "label": "0",
+        "ostring": false,
+        "name": "",
+        "x": 555,
+        "y": 960,
+        "wires": [
+            [
+                "8160de5da6533447"
+            ],
+            [
+                "b487ab0b9cfae17f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "b487ab0b9cfae17f",
+        "type": "function",
+        "z": "ba88500a6644f9ad",
+        "name": "function 2",
+        "func": "global.set(msg.topic + '[' + msg.label + ']', Boolean(msg.payload));\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1025,
+        "y": 1040,
+        "wires": [
+            []
+        ],
+        "l": false
+    },
+    {
+        "id": "7999d1a7fda7bb5f",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "1",
+        "outputs": 1,
+        "name": "",
+        "x": 450,
+        "y": 960,
+        "wires": [
+            [
+                "46c3788cf9d12aed"
+            ]
+        ]
+    },
+    {
+        "id": "ebd56637fced523f",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "0",
+        "outputs": 0,
+        "name": "",
+        "x": 1070,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e4a572d8fc2eb9a0",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "0",
+        "outputs": 0,
+        "name": "",
+        "x": 1070,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "8160de5da6533447",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "4",
+        "index": "1",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S4",
+        "label": "1",
+        "ostring": false,
+        "name": "",
+        "x": 615,
+        "y": 960,
+        "wires": [
+            [
+                "bb445605b856f554"
+            ],
+            [
+                "b487ab0b9cfae17f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "bb445605b856f554",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "4",
+        "index": "2",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S4",
+        "label": "2",
+        "ostring": false,
+        "name": "",
+        "x": 675,
+        "y": 960,
+        "wires": [
+            [
+                "587fc17c810ddd84"
+            ],
+            [
+                "b487ab0b9cfae17f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "587fc17c810ddd84",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "4",
+        "index": "3",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S4",
+        "label": "3",
+        "ostring": false,
+        "name": "",
+        "x": 735,
+        "y": 960,
+        "wires": [
+            [
+                "5ccd3554c0f190bd"
+            ],
+            [
+                "b487ab0b9cfae17f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "5ccd3554c0f190bd",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "4",
+        "index": "4",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S4",
+        "label": "4",
+        "ostring": false,
+        "name": "",
+        "x": 795,
+        "y": 960,
+        "wires": [
+            [
+                "d7a2278dfc4a87b7"
+            ],
+            [
+                "b487ab0b9cfae17f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "d7a2278dfc4a87b7",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "4",
+        "index": "5",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S4",
+        "label": "5",
+        "ostring": false,
+        "name": "",
+        "x": 855,
+        "y": 960,
+        "wires": [
+            [
+                "32f9a4f287dd1dd5"
+            ],
+            [
+                "b487ab0b9cfae17f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "32f9a4f287dd1dd5",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "4",
+        "index": "6",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S4",
+        "label": "6",
+        "ostring": false,
+        "name": "",
+        "x": 915,
+        "y": 960,
+        "wires": [
+            [
+                "8f3bdeb088d096d1"
+            ],
+            [
+                "b487ab0b9cfae17f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "8f3bdeb088d096d1",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "4",
+        "index": "7",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S4",
+        "label": "7",
+        "ostring": false,
+        "name": "",
+        "x": 975,
+        "y": 960,
+        "wires": [
+            [
+                "e4a572d8fc2eb9a0"
+            ],
+            [
+                "b487ab0b9cfae17f"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "5a48622dcaff51ae",
+        "type": "redplc-coil",
+        "z": "ba88500a6644f9ad",
+        "operation": "SN",
+        "vartype": "M",
+        "address": "3",
+        "index": "1",
+        "counter": "R",
+        "timer": "R",
+        "fflop": "R",
+        "name": "",
+        "x": 790,
+        "y": 480,
+        "wires": [
+            [
+                "07fcf23cef84d467"
+            ]
+        ]
+    },
+    {
+        "id": "1dca1a23cc82188e",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "1",
+        "outputs": 1,
+        "name": "",
+        "x": 450,
+        "y": 860,
+        "wires": [
+            [
+                "104043ca9e1e3958"
+            ]
+        ]
+    },
+    {
+        "id": "104043ca9e1e3958",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "3",
+        "index": 0,
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S3",
+        "label": "0",
+        "ostring": false,
+        "name": "",
+        "x": 555,
+        "y": 860,
+        "wires": [
+            [
+                "fb1db3e9938fa610"
+            ],
+            [
+                "25b7ce322618c8db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "25b7ce322618c8db",
+        "type": "function",
+        "z": "ba88500a6644f9ad",
+        "name": "function 3",
+        "func": "global.set(msg.topic + '[' + msg.label + ']', Boolean(msg.payload));\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1025,
+        "y": 920,
+        "wires": [
+            []
+        ],
+        "l": false
+    },
+    {
+        "id": "3687633f3ef5defd",
+        "type": "redplc-sys-rail",
+        "z": "ba88500a6644f9ad",
+        "rtype": "0",
+        "outputs": 0,
+        "name": "",
+        "x": 1070,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "fb1db3e9938fa610",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "3",
+        "index": "1",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S3",
+        "label": "1",
+        "ostring": false,
+        "name": "",
+        "x": 615,
+        "y": 860,
+        "wires": [
+            [
+                "a697b271831f7c9d"
+            ],
+            [
+                "25b7ce322618c8db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a697b271831f7c9d",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "3",
+        "index": "2",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S3",
+        "label": "2",
+        "ostring": false,
+        "name": "",
+        "x": 675,
+        "y": 860,
+        "wires": [
+            [
+                "5eb1d768622e7992"
+            ],
+            [
+                "25b7ce322618c8db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "5eb1d768622e7992",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "3",
+        "index": "3",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S3",
+        "label": "3",
+        "ostring": false,
+        "name": "",
+        "x": 735,
+        "y": 860,
+        "wires": [
+            [
+                "ded8156c51df8ead"
+            ],
+            [
+                "25b7ce322618c8db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "ded8156c51df8ead",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "3",
+        "index": "4",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S3",
+        "label": "4",
+        "ostring": false,
+        "name": "",
+        "x": 795,
+        "y": 860,
+        "wires": [
+            [
+                "213be60b023e69c1"
+            ],
+            [
+                "25b7ce322618c8db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "213be60b023e69c1",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "3",
+        "index": "5",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S3",
+        "label": "5",
+        "ostring": false,
+        "name": "",
+        "x": 855,
+        "y": 860,
+        "wires": [
+            [
+                "4fd06115ea1a13b2"
+            ],
+            [
+                "25b7ce322618c8db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "4fd06115ea1a13b2",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "3",
+        "index": "6",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S3",
+        "label": "6",
+        "ostring": false,
+        "name": "",
+        "x": 915,
+        "y": 860,
+        "wires": [
+            [
+                "1e9f2ca513a16164"
+            ],
+            [
+                "25b7ce322618c8db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "1e9f2ca513a16164",
+        "type": "redplc-export",
+        "z": "ba88500a6644f9ad",
+        "vartype": "M",
+        "address": "3",
+        "index": "7",
+        "counter": "QU",
+        "timer": "Q",
+        "fflop": "Q",
+        "tofix": 2,
+        "topic": "S3",
+        "label": "7",
+        "ostring": false,
+        "name": "",
+        "x": 975,
+        "y": 860,
+        "wires": [
+            [
+                "3687633f3ef5defd"
+            ],
+            [
+                "25b7ce322618c8db"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "ee3889da73845d3c",
+        "type": "redplc-coil",
+        "z": "ba88500a6644f9ad",
+        "operation": "SN",
+        "vartype": "M",
+        "address": "4",
+        "index": "3",
+        "counter": "R",
+        "timer": "R",
+        "fflop": "R",
+        "name": "",
+        "x": 790,
+        "y": 560,
+        "wires": [
+            [
+                "ebd56637fced523f"
+            ]
+        ]
+    },
+    {
+        "id": "0c05568d64c09677",
+        "type": "redplc-coil",
+        "z": "ba88500a6644f9ad",
+        "operation": "ST",
+        "vartype": "M",
+        "address": "4",
+        "index": "2",
+        "counter": "R",
+        "timer": "R",
+        "fflop": "R",
+        "name": "",
+        "x": 790,
+        "y": 620,
+        "wires": [
+            [
+                "ebd56637fced523f"
+            ]
+        ]
+    },
+    {
+        "id": "a37c20eb9f6ec6b0",
+        "type": "ui-led",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "group": "f16a9c604874eba3",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "Channel 0",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 550,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "f482e8a322ac4d28",
+        "type": "context-monitor",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "monitoring": [
+            {
+                "scope": "global",
+                "key": "S3"
+            }
+        ],
+        "tostatus": true,
+        "x": 150,
+        "y": 680,
+        "wires": [
+            [],
+            [
+                "174fdcb53e65ecf7",
+                "1032b48eac38daba"
+            ]
+        ]
+    },
+    {
+        "id": "174fdcb53e65ecf7",
+        "type": "debug",
+        "z": "0213d34cc097629b",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "1032b48eac38daba",
+        "type": "switch",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "S3[0]",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "S3[1]",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "S3[2]",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "S3[3]",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 330,
+        "y": 760,
+        "wires": [
+            [
+                "a37c20eb9f6ec6b0"
+            ],
+            [
+                "9e9f6562b1209f15"
+            ],
+            [
+                "4c4ef16e85f3c22c"
+            ],
+            [
+                "6ef028e2c2c9e191"
+            ]
+        ]
+    },
+    {
+        "id": "9e9f6562b1209f15",
+        "type": "ui-led",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "group": "f16a9c604874eba3",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "Channel 1",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 550,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "4c4ef16e85f3c22c",
+        "type": "ui-led",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "group": "f16a9c604874eba3",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "Channel 2",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 550,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "6ef028e2c2c9e191",
+        "type": "ui-led",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "group": "f16a9c604874eba3",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "Channel 3",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 550,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "f1511a1c14ccb6f9",
+        "type": "ui-led",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "group": "cf51d8197c6e302d",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "Channel 0",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 550,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "ac446f2cb2d9c28d",
+        "type": "context-monitor",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "monitoring": [
+            {
+                "scope": "global",
+                "key": "S4"
+            }
+        ],
+        "tostatus": true,
+        "x": 150,
+        "y": 1060,
+        "wires": [
+            [],
+            [
+                "e44492150328b6b3",
+                "c1d801e766dffdb5"
+            ]
+        ]
+    },
+    {
+        "id": "e44492150328b6b3",
+        "type": "debug",
+        "z": "0213d34cc097629b",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "c1d801e766dffdb5",
+        "type": "switch",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "S4[0]",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "S4[1]",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "S4[2]",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "S4[3]",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 330,
+        "y": 1140,
+        "wires": [
+            [
+                "f1511a1c14ccb6f9"
+            ],
+            [
+                "b259af204fbf8983"
+            ],
+            [
+                "c754f65a73f1b3f6"
+            ],
+            [
+                "bca68efe92d19a73"
+            ]
+        ]
+    },
+    {
+        "id": "b259af204fbf8983",
+        "type": "ui-led",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "group": "cf51d8197c6e302d",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "Channel 1",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 550,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "c754f65a73f1b3f6",
+        "type": "ui-led",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "group": "cf51d8197c6e302d",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "Channel 2",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 550,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "bca68efe92d19a73",
+        "type": "ui-led",
+        "z": "0213d34cc097629b",
+        "name": "",
+        "group": "cf51d8197c6e302d",
+        "order": -1,
+        "width": 0,
+        "height": 0,
+        "label": "Channel 3",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 550,
+        "y": 1260,
+        "wires": []
+    }
+]
