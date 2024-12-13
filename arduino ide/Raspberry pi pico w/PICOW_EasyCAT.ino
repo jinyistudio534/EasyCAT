@@ -62,6 +62,8 @@ uint32_t      Time;
  
 void setup()
 {
+  // Raspberry Pi HAT Expansion Based on Pico
+  // for https://shop.sb-components.co.uk/products/raspberry-pi-pico-hat-expansion?srsltid=AfmBOopx-v6MF-PKBbN5b_vogiarRQnqrFc5fcYB4GCymtYDcZsAZLO0
   SPI.setCS(5);
   SPI.setSCK(2);
   SPI.setRX(4);
